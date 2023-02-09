@@ -1,0 +1,21 @@
+{
+  "minecraft:adventure/totem_of_undying": {
+    "criteria": {
+      "used_totem": "2023-02-09 18:24:30 +0900"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2023-02-09 18:24:08 +0900"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:forest": "2023-02-09 18:23:19 +0900"
+    },
+    "done": false
+  },
+  "DataVersion": 3105
+}
