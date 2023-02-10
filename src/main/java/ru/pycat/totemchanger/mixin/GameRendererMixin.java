@@ -1,19 +1,13 @@
 package ru.pycat.totemchanger.mixin;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3f;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,18 +18,20 @@ import ru.pycat.totemchanger.TotemChanger;
 @Mixin(GameRenderer.class)
 public class GameRendererMixin {
 
-    @Shadow @Nullable private ItemStack floatingItem;
+    public TotemChanger totemChanger = new TotemChanger();
 
-    @Inject(method = "renderFloatingItem",
+    @Shadow @Nullable private ItemStack itemActivationItem;
+
+    @Inject(method = "renderItemActivationAnimation",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/item/ItemRenderer;renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;IILnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
+                    target = "Lnet/minecraft/client/renderer/entity/ItemRenderer;renderStatic(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/renderer/block/model/ItemTransforms$TransformType;IILcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
                     opcode = Opcodes.INVOKEVIRTUAL,
                     ordinal = 0),
             locals = LocalCapture.CAPTURE_FAILSOFT)
-    private void onItemRender(int scaledWidth, int scaledHeight, float tickDelta, CallbackInfo ci, int i, float f, float g, float h, float j, float k, float l, float m, MatrixStack matrixStack, float n, VertexConsumerProvider.Immediate immediate) {
-        if (TotemChanger.config.enabled && this.floatingItem.isOf(Items.TOTEM_OF_UNDYING)) {
-            matrixStack.scale(TotemChanger.config.scale, TotemChanger.config.scale, TotemChanger.config.scale);
-            matrixStack.translate(TotemChanger.config.posX, TotemChanger.config.posY, 0);
+    private void onFloatingItemRender(int i, int j, float f, CallbackInfo ci, int k, float g, float h, float l, float m, float n, float o, float p, PoseStack poseStack, float q, MultiBufferSource.BufferSource bufferSource) {
+        if (totemChanger.isEnabled() && this.itemActivationItem.is(Items.TOTEM_OF_UNDYING)) {
+            poseStack.scale(totemChanger.getScale(), totemChanger.getScale(), totemChanger.getScale());
+            poseStack.translate(totemChanger.getPosX(), totemChanger.getPosY(), totemChanger.getPosX());
         }
     }
 
