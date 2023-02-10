@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "totemchanger",
   "version": "${version}",
-  "name": "TotemChanger",
+  "name": "Totem Animation Changer",
   "description": "Changes size and position of totem pop animation",
   "authors": [
     "pycat"
@@ -16,7 +16,7 @@
       "ru.pycat.totemchanger.TotemChanger"
     ],
     "modmenu": [
-      "ru.pycat.totemchanger.TotemChangerModMenu"
+      "ru.pycat.totemchanger.config.TotemChangerModMenu"
     ]
   },
   "mixins": [
