@@ -28,11 +28,11 @@ public class TotemChanger implements ModInitializer {
     }
 
     public float getPosX() {
-        return this.config.posX;
+        return this.config.posX * 0.1f;
     }
 
     public float getPosY() {
-        return this.config.posY;
+        return this.config.posY * 0.1f;
     }
 
 }

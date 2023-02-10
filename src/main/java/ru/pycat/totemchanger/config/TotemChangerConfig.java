@@ -12,7 +12,7 @@ public class TotemChangerConfig implements ConfigData {
 
     public float scale = 1.0f;
 
-    @ConfigEntry.BoundedDiscrete(max = 10, min = -10)
+    @ConfigEntry.BoundedDiscrete(max = 20, min = -20)
     public int posX = 0;
 
     @ConfigEntry.BoundedDiscrete(max = 10, min = -10)

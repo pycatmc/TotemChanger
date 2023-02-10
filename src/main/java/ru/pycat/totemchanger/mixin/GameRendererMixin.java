@@ -30,8 +30,8 @@ public class GameRendererMixin {
             locals = LocalCapture.CAPTURE_FAILSOFT)
     private void onFloatingItemRender(int i, int j, float f, CallbackInfo ci, int k, float g, float h, float l, float m, float n, float o, float p, PoseStack poseStack, float q, MultiBufferSource.BufferSource bufferSource) {
         if (totemChanger.isEnabled() && this.itemActivationItem.is(Items.TOTEM_OF_UNDYING)) {
-            poseStack.scale(totemChanger.getScale(), totemChanger.getScale(), totemChanger.getScale());
             poseStack.translate(totemChanger.getPosX(), totemChanger.getPosY(), totemChanger.getPosX());
+            poseStack.scale(totemChanger.getScale(), totemChanger.getScale(), totemChanger.getScale());
         }
     }
 
