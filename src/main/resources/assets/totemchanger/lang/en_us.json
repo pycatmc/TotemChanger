@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.totemchanger.title": "Totem Animation Changer's Settings",
+  "text.autoconfig.totemchanger.option.enabled": "Enabled",
+  "text.autoconfig.totemchanger.option.scale": "Totem Scale",
+  "text.autoconfig.totemchanger.option.posX": "Totem Position X",
+  "text.autoconfig.totemchanger.option.posY": "Totem Position Y"
+}

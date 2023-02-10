@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.totemchanger.title": "Настройки Totem Animation Changer'а",
+  "text.autoconfig.totemchanger.option.enabled": "Включить",
+  "text.autoconfig.totemchanger.option.scale": "Размер Тотема",
+  "text.autoconfig.totemchanger.option.posX": "Позиция X Тотема",
+  "text.autoconfig.totemchanger.option.posY": "Позиция Y Тотема"
+}
