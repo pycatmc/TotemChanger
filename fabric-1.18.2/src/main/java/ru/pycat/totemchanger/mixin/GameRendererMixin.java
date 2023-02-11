@@ -17,6 +17,8 @@ import ru.pycat.totemchanger.TotemChanger;
 
 @Mixin(GameRenderer.class)
 public class GameRendererMixin {
+    
+    public TotemChanger totemChanger = new TotemChanger();
 
     @Shadow @Nullable private ItemStack itemActivationItem;
 
@@ -27,8 +29,6 @@ public class GameRendererMixin {
                     ordinal = 0),
             locals = LocalCapture.CAPTURE_FAILSOFT)
     private void onFloatingItemRender(int i, int j, float f, CallbackInfo ci, int k, float g, float h, float l, float m, float n, float o, float p, PoseStack poseStack, float q, MultiBufferSource.BufferSource bufferSource) {
-        TotemChanger totemChanger = new TotemChanger();
-
         if (totemChanger.isEnabled() && this.itemActivationItem.is(Items.TOTEM_OF_UNDYING)) {
             poseStack.translate(totemChanger.getPosX(), totemChanger.getPosY(), totemChanger.getPosX());
             poseStack.scale(totemChanger.getScale(), totemChanger.getScale(), totemChanger.getScale());
