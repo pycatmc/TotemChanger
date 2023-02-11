@@ -10,7 +10,7 @@ import ru.pycat.totemchanger.config.TotemChangerConfig;
 public class TotemChanger implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("totemchanger");
-    public static TotemChangerConfig config;
+    public TotemChangerConfig config;
 
     @Override
     public void onInitialize() {
@@ -20,19 +20,19 @@ public class TotemChanger implements ModInitializer {
     }
 
     public boolean isEnabled() {
-        return this.config.enabled;
+        return config.enabled;
     }
 
     public float getScale() {
-        return this.config.scale;
+        return config.scale;
     }
 
     public float getPosX() {
-        return this.config.posX * 0.1f;
+        return config.posX * 0.1f;
     }
 
     public float getPosY() {
-        return this.config.posY * 0.1f;
+        return config.posY * 0.1f;
     }
 
 }
