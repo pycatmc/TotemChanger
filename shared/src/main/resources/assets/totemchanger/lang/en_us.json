@@ -3,5 +3,7 @@
   "text.autoconfig.totemchanger.option.enabled": "Enabled",
   "text.autoconfig.totemchanger.option.scale": "Totem Scale",
   "text.autoconfig.totemchanger.option.posX": "Totem Position X",
-  "text.autoconfig.totemchanger.option.posY": "Totem Position Y"
+  "text.autoconfig.totemchanger.option.posY": "Totem Position Y",
+  "modmenu.descriptionTranslation.totemchanger": "Allows you to change scale and position of totem pop animation.",
+  "modmenu.summaryTranslation.totemchanger": "Change your totem animation!"
 }

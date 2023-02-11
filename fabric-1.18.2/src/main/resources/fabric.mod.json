@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "totemchanger",
+  "version": "${version}",
+  "name": "Totem Animation Changer",
+  "description": "Changes size and position of totem pop animation",
+  "authors": [
+    "pycat"
+  ],
+  "contact": {},
+  "license": "unlicense",
+  "icon": "assets/totemchanger/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "ru.pycat.totemchanger.TotemChanger"
+    ],
+    "modmenu": [
+      "ru.pycat.totemchanger.config.TotemChangerModMenu"
+    ]
+  },
+  "mixins": [
+    "totemchanger.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.14",
+    "fabric": "*",
+    "minecraft": "1.18.2",
+    "cloth-config": "*"
+  },
+  "recommends": {
+    "modmenu": "*"
+  }
+}

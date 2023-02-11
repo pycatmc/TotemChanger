@@ -7,3 +7,8 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+rootProject.name = 'TotemChanger'
+include 'shared'
+include 'fabric-1.18.2'
+include 'fabric-1.19'
