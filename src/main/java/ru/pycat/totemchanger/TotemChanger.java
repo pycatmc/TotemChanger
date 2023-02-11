@@ -10,7 +10,7 @@ import ru.pycat.totemchanger.config.TotemChangerConfig;
 public class TotemChanger implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("totemchanger");
-    public TotemChangerConfig config;
+    public static TotemChangerConfig config;
 
     @Override
     public void onInitialize() {
