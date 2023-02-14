@@ -1,9 +1,9 @@
 {
-  "text.autoconfig.totemchanger.title": "Настройки Totem Animation Changer'а",
-  "text.autoconfig.totemchanger.option.enabled": "Включить",
-  "text.autoconfig.totemchanger.option.scale": "Размер тотема",
-  "text.autoconfig.totemchanger.option.posX": "X-позиция тотема",
-  "text.autoconfig.totemchanger.option.posY": "Y-позиция тотема",
-  "modmenu.descriptionTranslation.totemchanger": "Позволяет менять позицию и размер анимации тотема",
+  "totemchanger.title": "Настройки Totem Changer",
+  "totemchanger.option.enabled": "Включить",
+  "totemchanger.option.scale": "Размер тотема",
+  "totemchanger.option.posX": "X-позиция тотема",
+  "totemchanger.option.posY": "Y-позиция тотема",
+  "modmenu.descriptionTranslation.totemchanger": "Позволяет менять позицию и размер анимации тотема.",
   "modmenu.summaryTranslation.totemchanger": "Измените свою анимацию тотема!"
 }

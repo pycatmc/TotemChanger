@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -13,14 +12,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import ru.pycat.totemchanger.TotemChanger;
+import ru.pycat.totemchanger.config.TotemChangerConfig;
 
 @Mixin(GameRenderer.class)
 public class GameRendererMixin {
-
-    public TotemChanger totemChanger = new TotemChanger();
-
-    @Shadow @Nullable private ItemStack itemActivationItem;
+    @Shadow private ItemStack itemActivationItem;
 
     @Inject(method = "renderItemActivationAnimation",
             at = @At(value = "INVOKE",
@@ -29,10 +25,9 @@ public class GameRendererMixin {
                     ordinal = 0),
             locals = LocalCapture.CAPTURE_FAILSOFT)
     private void onFloatingItemRender(int i, int j, float f, CallbackInfo ci, int k, float g, float h, float l, float m, float n, float o, float p, PoseStack poseStack, float q, MultiBufferSource.BufferSource bufferSource) {
-        if (totemChanger.isEnabled() && this.itemActivationItem.is(Items.TOTEM_OF_UNDYING)) {
-            poseStack.translate(totemChanger.getPosX(), totemChanger.getPosY(), totemChanger.getPosX());
-            poseStack.scale(totemChanger.getScale(), totemChanger.getScale(), totemChanger.getScale());
+        if (TotemChangerConfig.enabled && this.itemActivationItem.is(Items.TOTEM_OF_UNDYING)) {
+            poseStack.translate(TotemChangerConfig.posX, TotemChangerConfig.posY, TotemChangerConfig.posX);
+            poseStack.scale(TotemChangerConfig.scale, TotemChangerConfig.scale, TotemChangerConfig.scale);
         }
     }
-
 }

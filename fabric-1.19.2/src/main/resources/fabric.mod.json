@@ -8,11 +8,11 @@
     "pycat"
   ],
   "contact": {},
-  "license": "unlicense",
+  "license": "Unlicense",
   "icon": "assets/totemchanger/icon.png",
   "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "ru.pycat.totemchanger.TotemChanger"
     ],
     "modmenu": [
@@ -23,10 +23,9 @@
     "totemchanger.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.14",
+    "fabricloader": "*",
     "fabric": "*",
-    "minecraft": ">=1.19",
-    "cloth-config": "*"
+    "minecraft": "1.19.x"
   },
   "recommends": {
     "modmenu": "*"
