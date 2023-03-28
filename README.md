@@ -4,7 +4,7 @@
 You can contact us via [Discord](https://dsc.gg/femboypve).
 
 ## Download
-soon™
+[GitHub](https://github.com/FemboyPvE/TotemChanger/releases/latest)
 
 ## Building
 You will need:
@@ -28,7 +28,7 @@ This project is licensed under [Unlicense](https://github.com/FemboyPvE/TotemCha
 **A**: [Discord](https://dsc.gg/femboypve).
 
 **Q**: How to download?  
-**A**: Releases will be available soon™, snapshots are available [on GitHub Actions](https://github.com/FemboyPvE/TotemChanger/actions) if you have a GitHub account.
+**A**: Releases are available [on GitHub Releases](https://github.com/FemboyPvE/TotemChanger/releases/latest), snapshots are available [on GitHub Actions](https://github.com/FemboyPvE/TotemChanger/actions) if you have a GitHub account.
 
 **Q**: Forge?  
 **A**: Later. (or help me by contributing)
