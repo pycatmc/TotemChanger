@@ -3,7 +3,7 @@
   "id": "totemchanger",
   "version": "${version}",
   "name": "Totem Animation Changer",
-  "description": "Changes size and position of totem pop animation",
+  "description": "Change your totem!",
   "authors": [
     "pycat"
   ],
