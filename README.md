@@ -1,6 +1,6 @@
 # TotemChanger
 
-*Changes size and position of totem pop animation.*   
+*Changes totem pop animation and particles.*   
 You can contact us via [Discord](https://dsc.gg/femboypve).
 
 ## Download
