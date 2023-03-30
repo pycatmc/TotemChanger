@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class TotemChangerConfig {
+public class TotemChangerAnimationConfig {
     private static final Logger LOG = LogManager.getLogger("TotemChanger");
     private static final Gson GSON = new Gson();
 
@@ -20,9 +20,10 @@ public class TotemChangerConfig {
 
     public static void loadConfig(Path directory) {
         try {
-            Path path = directory.resolve("totemchanger.json");
-            if (!Files.isRegularFile(path)) return;
-            JsonObject json = GSON.fromJson(new String(Files.readAllBytes(path), StandardCharsets.UTF_8), JsonObject.class);
+            Path pathConfigFolder = directory.resolve("totemchanger");
+            Path pathConfig = pathConfigFolder.resolve("totemchanger-animation.json");
+            if (!Files.isRegularFile(pathConfig)) return;
+            JsonObject json = GSON.fromJson(new String(Files.readAllBytes(pathConfig), StandardCharsets.UTF_8), JsonObject.class);
             enabled = json.get("enabled").getAsBoolean();
             scale = json.get("scale").getAsFloat();
             posX = json.get("posX").getAsFloat();
@@ -35,14 +36,15 @@ public class TotemChangerConfig {
 
     public static void saveConfig(Path directory) {
         try {
-            Path path = directory.resolve("totemchanger.json");
-            Files.createDirectories(directory);
+            Path pathConfigFolder = directory.resolve("totemchanger");
+            Path pathConfig = pathConfigFolder.resolve("totemchanger-animation.json");
+            Files.createDirectories(pathConfigFolder);
             JsonObject json = new JsonObject();
             json.addProperty("enabled", enabled);
             json.addProperty("scale", scale);
             json.addProperty("posX", posX);
             json.addProperty("posY", posY);
-            Files.write(path, GSON.toJson(json).getBytes(StandardCharsets.UTF_8));
+            Files.write(pathConfig, GSON.toJson(json).getBytes(StandardCharsets.UTF_8));
             LOG.info("TotemChanger config saved.");
         } catch (Exception e) {
             LOG.warn("Unable to save TotemChanger config.", e);

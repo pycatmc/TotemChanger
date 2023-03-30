@@ -1,9 +1,23 @@
 {
-  "totemchanger.title": "Настройки Totem Changer",
-  "totemchanger.option.enabled": "Включить",
-  "totemchanger.option.scale": "Размер тотема",
-  "totemchanger.option.posX": "X-позиция тотема",
-  "totemchanger.option.posY": "Y-позиция тотема",
-  "modmenu.descriptionTranslation.totemchanger": "Позволяет менять позицию и размер анимации тотема.",
-  "modmenu.summaryTranslation.totemchanger": "Измените свою анимацию тотема!"
+  "totemchanger.animation": "Анимация тотема",
+  "totemchanger.title": "Настройки анимации Totem Changer",
+  "totemchanger.animation.option.enabled": "Включить",
+  "totemchanger.animation.option.scale": "Размер",
+  "totemchanger.animation.option.posX": "X-позиция",
+  "totemchanger.animation.option.posY": "Y-позиция",
+  "totemchanger.particles.option.enabled": "Включить",
+
+  "totemchanger.particles": "Частицы тотема",
+  "totemchanger.particles.title": "Настройки частиц Totem Changer",
+  "totemchanger.particles.option.scale": "Размер",
+  "totemchanger.particles.option.velocityMultiplier": "Множитель скорости",
+  "totemchanger.particles.option.gravity": "Гравитация",
+  "totemchanger.particles.option.lifetime": "Длинна жизни",
+  "totemchanger.particles.option.randomColor": "Случайный цвет",
+  "totemchanger.particles.option.colorProfile": "Профиль цвета",
+  "totemchanger.particles.option.red": "Красный",
+  "totemchanger.particles.option.green": "Зеленый",
+  "totemchanger.particles.option.blue": "Синий",
+  "modmenu.descriptionTranslation.totemchanger": "Позволяет менять анимацию и частицы тотема.",
+  "modmenu.summaryTranslation.totemchanger": "Измените свой тотем"
 }

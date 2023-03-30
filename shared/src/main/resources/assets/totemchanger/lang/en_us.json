@@ -1,9 +1,23 @@
 {
-  "totemchanger.title": "Totem Changer Settings",
-  "totemchanger.option.enabled": "Enabled",
-  "totemchanger.option.scale": "Totem Scale",
-  "totemchanger.option.posX": "Totem Position X",
-  "totemchanger.option.posY": "Totem Position Y",
-  "modmenu.descriptionTranslation.totemchanger": "Allows you to change scale and position of totem pop animation.",
-  "modmenu.summaryTranslation.totemchanger": "Change your totem animation!"
+  "totemchanger.animation": "Totem Animation",
+  "totemchanger.animation.title": "Totem Changer Animation Settings",
+  "totemchanger.animation.option.enabled": "Enabled",
+  "totemchanger.animation.option.scale": "Scale",
+  "totemchanger.animation.option.posX": "Position X",
+  "totemchanger.animation.option.posY": "Position Y",
+  "totemchanger.particles.option.enabled": "Enabled",
+
+  "totemchanger.particles": "Totem Particles",
+  "totemchanger.particles.title": "Totem Changer Particles Settings",
+  "totemchanger.particles.option.scale": "Scale",
+  "totemchanger.particles.option.velocityMultiplier": "Velocity Multiplier",
+  "totemchanger.particles.option.gravity": "Gravity",
+  "totemchanger.particles.option.lifetime": "Lifetime",
+  "totemchanger.particles.option.randomColor": "Random Color",
+  "totemchanger.particles.option.colorProfile": "Color Profile",
+  "totemchanger.particles.option.red": "Red",
+  "totemchanger.particles.option.green": "Green",
+  "totemchanger.particles.option.blue": "Blue",
+  "modmenu.descriptionTranslation.totemchanger": "Allows you to change totem pop animation and particles.",
+  "modmenu.summaryTranslation.totemchanger": "Change your totem!"
 }
