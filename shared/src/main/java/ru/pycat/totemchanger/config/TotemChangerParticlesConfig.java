@@ -5,15 +5,14 @@ import com.google.gson.JsonObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Random;
 
 public class TotemChangerParticlesConfig {
     private static final Logger LOG = LogManager.getLogger("TotemChanger");
     private static final Gson GSON = new Gson();
-    private static final Random random = new Random();
 
     public static boolean enabled = true;
     public static int colorProfile = 1;
@@ -26,6 +25,8 @@ public class TotemChangerParticlesConfig {
     public static int red = 0;
     public static int green = 0;
     public static int blue = 0;
+
+
 
     public static void setColorProfile(Path directory, int newColorProfile) {
         try {
@@ -105,25 +106,8 @@ public class TotemChangerParticlesConfig {
         }
     }
 
-    public static float getRed() {
-        float tempRed = red;
-        if (tempRed > 15)
-            tempRed -= random.nextInt(15);
-        return 0.003921568627451F * tempRed;
-    }
-
-    public static float getGreen() {
-        float tempGreen = green;
-        if (tempGreen > 15)
-            tempGreen -= random.nextInt(15);
-        return 0.003921568627451F * tempGreen;
-    }
-
-    public static float getBlue() {
-        float tempBlue = blue;
-        if (tempBlue > 15)
-            tempBlue -= random.nextInt(15);
-        return 0.003921568627451F * tempBlue;
+    public static int getColor() {
+        return new Color(red, green, blue).getRGB();
     }
 
 }

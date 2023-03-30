@@ -10,6 +10,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.pycat.totemchanger.config.TotemChangerParticlesConfig;
 
+import java.awt.*;
+
 @Mixin(TotemParticle.class)
 public class TotemParticleMixin extends SimpleAnimatedParticle {
 
@@ -26,19 +28,15 @@ public class TotemParticleMixin extends SimpleAnimatedParticle {
             this.setLifetime(TotemChangerParticlesConfig.lifetime);
             this.gravity = TotemChangerParticlesConfig.gravity;
 
-            float red, green, blue;
+            int color;
 
             if (TotemChangerParticlesConfig.randomColor) {
-                red = this.random.nextFloat();
-                green = this.random.nextFloat();
-                blue = this.random.nextFloat();
+                color = Color.HSBtoRGB(this.random.nextFloat(), 1.0f, 1.0f);
             } else {
-                red = TotemChangerParticlesConfig.getRed();
-                green = TotemChangerParticlesConfig.getGreen();
-                blue = TotemChangerParticlesConfig.getBlue();
+                color = TotemChangerParticlesConfig.getColor();
             }
 
-            setColor(red, green, blue);
+            setColor(color);
         }
     }
 
