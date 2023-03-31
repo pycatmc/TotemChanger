@@ -95,6 +95,7 @@ public class TotemChangerParticlesScreen extends Screen {
             red.visible = true;
             green.visible = true;
             blue.visible = true;
+
             RenderSystem.setShaderTexture(0, CHECKBOX_TEXTURE);
             RenderSystem.enableDepthTest();
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -102,6 +103,7 @@ public class TotemChangerParticlesScreen extends Screen {
             RenderSystem.defaultBlendFunc();
             RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             blit(stack, (width / 2 - 252), 208, 0.0F, 0.0F, 20, 20, 64, 64);
+
             fill(stack, (width / 2 - 250), 210, (width / 2 - 234), 226, TotemChangerParticlesConfig.getColor());
         } else {
             red.visible = false;
