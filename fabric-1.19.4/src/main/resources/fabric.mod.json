@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "totemchanger",
+  "version": "${version}",
+  "name": "Totem Animation Changer",
+  "description": "Change your totem!",
+  "authors": [
+    "pycat"
+  ],
+  "contact": {},
+  "license": "Unlicense",
+  "icon": "assets/totemchanger/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "ru.pycat.totemchanger.TotemChanger"
+    ],
+    "modmenu": [
+      "ru.pycat.totemchanger.config.TotemChangerModMenu"
+    ]
+  },
+  "mixins": [
+    "totemchanger.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": ">=1.19.3"
+  },
+  "recommends": {
+    "modmenu": "*"
+  }
+}
