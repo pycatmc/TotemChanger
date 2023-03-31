@@ -26,3 +26,4 @@ jobs:
             fabric-1.18.2/build/libs/
             fabric-1.19.2/build/libs/
             fabric-1.19.3/build/libs/
+            fabric-1.19.4/build/libs/
