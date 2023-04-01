@@ -7,6 +7,9 @@
     "GameRendererMixin",
     "TotemParticleMixin"
   ],
+  "mixins": [
+    "CheckboxAccessor"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

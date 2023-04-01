@@ -14,10 +14,11 @@
   "totemchanger.particles.option.gravity": "Гравитация",
   "totemchanger.particles.option.lifetime": "Длинна жизни",
   "totemchanger.particles.option.randomColor": "Случайный цвет",
-  "totemchanger.particles.option.colorProfile": "Профиль цвета",
+  "totemchanger.particles.option.profile": "Профиль",
   "totemchanger.particles.option.red": "Красный",
   "totemchanger.particles.option.green": "Зеленый",
   "totemchanger.particles.option.blue": "Синий",
+
   "modmenu.descriptionTranslation.totemchanger": "Позволяет менять анимацию и частицы тотема.",
   "modmenu.summaryTranslation.totemchanger": "Измените свой тотем"
 }

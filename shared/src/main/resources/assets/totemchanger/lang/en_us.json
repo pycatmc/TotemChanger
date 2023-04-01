@@ -14,10 +14,11 @@
   "totemchanger.particles.option.gravity": "Gravity",
   "totemchanger.particles.option.lifetime": "Lifetime",
   "totemchanger.particles.option.randomColor": "Random Color",
-  "totemchanger.particles.option.colorProfile": "Color Profile",
+  "totemchanger.particles.option.profile": "Profile",
   "totemchanger.particles.option.red": "Red",
   "totemchanger.particles.option.green": "Green",
   "totemchanger.particles.option.blue": "Blue",
+
   "modmenu.descriptionTranslation.totemchanger": "Allows you to change totem pop animation and particles.",
   "modmenu.summaryTranslation.totemchanger": "Change your totem!"
 }

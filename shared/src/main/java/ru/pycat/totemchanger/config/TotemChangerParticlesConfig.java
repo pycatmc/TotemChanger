@@ -15,7 +15,7 @@ public class TotemChangerParticlesConfig {
     private static final Gson GSON = new Gson();
 
     public static boolean enabled = true;
-    public static int colorProfile = 1;
+    public static int profile = 1;
     public static float scale = 1F;
     public static float velocityMultiplier = 0.6F;
     public static float gravity = 1.25f;
@@ -28,7 +28,7 @@ public class TotemChangerParticlesConfig {
 
 
 
-    public static void setColorProfile(Path directory, int newColorProfile) {
+    public static void setProfile(Path directory, int newProfile) {
         try {
             saveConfig(directory);
 
@@ -37,12 +37,7 @@ public class TotemChangerParticlesConfig {
             Files.createDirectories(pathConfigFolder);
             JsonObject jsonConfig = new JsonObject();
             jsonConfig.addProperty("enabled", enabled);
-            jsonConfig.addProperty("scale", scale);
-            jsonConfig.addProperty("velocityMultiplier", velocityMultiplier);
-            jsonConfig.addProperty("gravity", gravity);
-            jsonConfig.addProperty("lifetime", lifetime);
-            jsonConfig.addProperty("randomColor", randomColor);
-            jsonConfig.addProperty("colorProfile", colorProfile = newColorProfile);
+            jsonConfig.addProperty("profile", profile = newProfile);
             Files.write(pathConfig, GSON.toJson(jsonConfig).getBytes(StandardCharsets.UTF_8));
 
             loadConfig(directory);
@@ -58,16 +53,16 @@ public class TotemChangerParticlesConfig {
             if (!Files.isRegularFile(pathConfig)) return;
             JsonObject jsonConfig = GSON.fromJson(new String(Files.readAllBytes(pathConfig), StandardCharsets.UTF_8), JsonObject.class);
             enabled = jsonConfig.get("enabled").getAsBoolean();
-            scale = jsonConfig.get("scale").getAsFloat();
-            velocityMultiplier = jsonConfig.get("velocityMultiplier").getAsFloat();
-            gravity = jsonConfig.get("gravity").getAsFloat();
-            lifetime = jsonConfig.get("lifetime").getAsInt();
-            randomColor = jsonConfig.get("randomColor").getAsBoolean();
-            colorProfile = jsonConfig.get("colorProfile").getAsInt();
+            profile = jsonConfig.get("profile").getAsInt();
 
-            Path pathProfile = pathConfigFolder.resolve("colorprofile"+ colorProfile +".json");
+            Path pathProfile = pathConfigFolder.resolve("profile"+ profile +".json");
             if (!Files.isRegularFile(pathProfile)) return;
             JsonObject jsonProfile = GSON.fromJson(new String(Files.readAllBytes(pathProfile), StandardCharsets.UTF_8), JsonObject.class);
+            scale = jsonProfile.get("scale").getAsFloat();
+            velocityMultiplier = jsonProfile.get("velocityMultiplier").getAsFloat();
+            gravity = jsonProfile.get("gravity").getAsFloat();
+            lifetime = jsonProfile.get("lifetime").getAsInt();
+            randomColor = jsonProfile.get("randomColor").getAsBoolean();
             red = jsonProfile.get("red").getAsInt();
             green = jsonProfile.get("green").getAsInt();
             blue = jsonProfile.get("blue").getAsInt();
@@ -85,16 +80,16 @@ public class TotemChangerParticlesConfig {
             Files.createDirectories(pathConfigFolder);
             JsonObject jsonConfig = new JsonObject();
             jsonConfig.addProperty("enabled", enabled);
-            jsonConfig.addProperty("scale", scale);
-            jsonConfig.addProperty("velocityMultiplier", velocityMultiplier);
-            jsonConfig.addProperty("gravity", gravity);
-            jsonConfig.addProperty("lifetime", lifetime);
-            jsonConfig.addProperty("randomColor", randomColor);
-            jsonConfig.addProperty("colorProfile", colorProfile);
+            jsonConfig.addProperty("profile", profile);
             Files.write(pathConfig, GSON.toJson(jsonConfig).getBytes(StandardCharsets.UTF_8));
 
-            Path pathProfile = pathConfigFolder.resolve("colorprofile"+colorProfile+".json");
+            Path pathProfile = pathConfigFolder.resolve("profile"+ profile +".json");
             JsonObject jsonProfile = new JsonObject();
+            jsonProfile.addProperty("scale", scale);
+            jsonProfile.addProperty("velocityMultiplier", velocityMultiplier);
+            jsonProfile.addProperty("gravity", gravity);
+            jsonProfile.addProperty("lifetime", lifetime);
+            jsonProfile.addProperty("randomColor", randomColor);
             jsonProfile.addProperty("red", red);
             jsonProfile.addProperty("green", green);
             jsonProfile.addProperty("blue", blue);

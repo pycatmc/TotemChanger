@@ -15,8 +15,8 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.lwjgl.glfw.GLFW;
+import ru.pycat.totemchanger.mixin.CheckboxAccessor;
 
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.function.DoubleConsumer;
 import java.util.function.DoubleFunction;
@@ -31,11 +31,11 @@ public class TotemChangerParticlesScreen extends Screen {
 
     private static Button switchButton;
     private static Checkbox enabled;
-    private static ColorProfileButton colorProfileButton;
+    private static ProfileButton profile;
     private static TCSlider scale;
     private static TCSlider velocityMultiplier;
-    private static TCSlider lifetime;
     private static TCSlider gravity;
+    private static TCSlider lifetime;
     private static Checkbox randomColor;
     private static TCSlider red;
     private static TCSlider green;
@@ -51,12 +51,12 @@ public class TotemChangerParticlesScreen extends Screen {
     private void updateGuiElements() {
         switchButton = Button.builder(Component.translatable("totemchanger.animation"), button -> minecraft.setScreen(new TotemChangerAnimationScreen(parent))).bounds(5, 5, 120, 20).build();
         enabled = new Checkbox(width / 2 - font.width(Component.translatable("totemchanger.particles.option.enabled")), 40, 24 + font.width(Component.translatable("totemchanger.particles.option.enabled")), 20, Component.translatable("totemchanger.particles.option.enabled"), TotemChangerParticlesConfig.enabled);
-        scale = new TCSlider(width / 2 - 75, 64, 150, 20, Component.empty(), TotemChangerParticlesConfig.scale / 2D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.scale"), Component.literal(FORMAT1.format(value * 2D))), value -> TotemChangerParticlesConfig.scale = (float) (value * 2D));
-        velocityMultiplier = new TCSlider(width / 2 -  75, 88, 150, 20, Component.empty(), TotemChangerParticlesConfig.velocityMultiplier / 2D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.velocityMultiplier"), Component.literal(FORMAT1.format(value * 2D))), value -> TotemChangerParticlesConfig.velocityMultiplier = (float) (value * 2D));
-        gravity = new TCSlider(width / 2 -  75, 112, 150, 20, Component.empty(), TotemChangerParticlesConfig.gravity / 2D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.gravity"), Component.literal(FORMAT2.format(value * 2D))), value -> TotemChangerParticlesConfig.gravity = (float) (value * 2D));
-        lifetime = new TCSlider(width / 2 -  75, 136, 150, 20, Component.empty(), TotemChangerParticlesConfig.lifetime / 200D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.lifetime"), Component.literal(Integer.toString((int) (value * 200D)))), value -> TotemChangerParticlesConfig.lifetime = (int) (value * 200D));
-        randomColor = new Checkbox(width  / 2 - font.width(Component.translatable("totemchanger.particles.option.randomColor")) + 15, 160, 24 + font.width(Component.translatable("totemchanger.particles.option.randomColor")), 20, Component.translatable("totemchanger.particles.option.randomColor"), TotemChangerParticlesConfig.randomColor);
-        colorProfileButton = new ColorProfileButton(width / 2 - 75, 184, 150, 20);
+        profile = new ProfileButton(width / 2 - 75, 64, 150, 20);
+        scale = new TCSlider(width / 2 - 75, 88, 150, 20, Component.empty(), TotemChangerParticlesConfig.scale / 2D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.scale"), Component.literal(FORMAT1.format(value * 2D))), value -> TotemChangerParticlesConfig.scale = (float) (value * 2D));
+        velocityMultiplier = new TCSlider(width / 2 -  75, 112, 150, 20, Component.empty(), TotemChangerParticlesConfig.velocityMultiplier / 2D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.velocityMultiplier"), Component.literal(FORMAT1.format(value * 2D))), value -> TotemChangerParticlesConfig.velocityMultiplier = (float) (value * 2D));
+        gravity = new TCSlider(width / 2 -  75, 136, 150, 20, Component.empty(), TotemChangerParticlesConfig.gravity / 2D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.gravity"), Component.literal(FORMAT2.format(value * 2D))), value -> TotemChangerParticlesConfig.gravity = (float) (value * 2D));
+        lifetime = new TCSlider(width / 2 -  75, 160, 150, 20, Component.empty(), TotemChangerParticlesConfig.lifetime / 200D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.lifetime"), Component.literal(Integer.toString((int) (value * 200D)))), value -> TotemChangerParticlesConfig.lifetime = (int) (value * 200D));
+        randomColor = new Checkbox(width  / 2 - font.width(Component.translatable("totemchanger.particles.option.randomColor")) + 15, 184, 24 + font.width(Component.translatable("totemchanger.particles.option.randomColor")), 20, Component.translatable("totemchanger.particles.option.randomColor"), TotemChangerParticlesConfig.randomColor);
         red = new TCSlider(width / 2 - 230, 208, 150, 20, Component.empty(), TotemChangerParticlesConfig.red / 255D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.red"), Component.literal(Integer.toString((int) (value * 255D)))), value -> TotemChangerParticlesConfig.red = (int) (value * 255D));
         green = new TCSlider(width / 2 - 75, 208, 150, 20, Component.empty(), TotemChangerParticlesConfig.green / 255D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.green"), Component.literal(Integer.toString((int) (value * 255D)))), value -> TotemChangerParticlesConfig.green = (int) (value * 255D));
         blue = new TCSlider(width / 2 + 80, 208, 150, 20, Component.empty(), TotemChangerParticlesConfig.blue / 255D, value -> CommonComponents.optionNameValue(Component.translatable("totemchanger.particles.option.blue"), Component.literal(Integer.toString((int) (value * 255D)))), value -> TotemChangerParticlesConfig.blue = (int) (value * 255D));
@@ -73,14 +73,19 @@ public class TotemChangerParticlesScreen extends Screen {
         addRenderableWidget(gravity);
         addRenderableWidget(lifetime);
         addRenderableWidget(randomColor);
-        addRenderableWidget(colorProfileButton);
+        addRenderableWidget(profile);
         addRenderableWidget(red);
         addRenderableWidget(green);
         addRenderableWidget(blue);
         addRenderableWidget(done);
     }
 
-    public static void updateColorSliders() {
+    public static void updateSettings() {
+        scale.setValue(TotemChangerParticlesConfig.scale / 2D);
+        velocityMultiplier.setValue(TotemChangerParticlesConfig.velocityMultiplier / 2D);
+        gravity.setValue(TotemChangerParticlesConfig.gravity / 2D);
+        lifetime.setValue(TotemChangerParticlesConfig.lifetime / 200D);
+        ((CheckboxAccessor) randomColor).setSelected(TotemChangerParticlesConfig.randomColor);
         red.setValue(TotemChangerParticlesConfig.red / 255D);
         green.setValue(TotemChangerParticlesConfig.green / 255D);
         blue.setValue(TotemChangerParticlesConfig.blue / 255D);
@@ -127,9 +132,9 @@ public class TotemChangerParticlesScreen extends Screen {
         TotemChangerParticlesConfig.saveConfig(FabricLoader.getInstance().getConfigDir());
     }
 
-    public static class ColorProfileButton extends AbstractButton {
+    public static class ProfileButton extends AbstractButton {
 
-        public ColorProfileButton(int x, int y, int width, int height) {
+        public ProfileButton(int x, int y, int width, int height) {
             super(x, y, width, height, Component.empty());
             updateMessage();
         }
@@ -144,16 +149,16 @@ public class TotemChangerParticlesScreen extends Screen {
             if (this.clicked(mouseX, mouseY)) {
                 switch (keyCode) {
                     case GLFW.GLFW_MOUSE_BUTTON_1 -> {
-                        TotemChangerParticlesConfig.setColorProfile(FabricLoader.getInstance().getConfigDir(), TotemChangerParticlesConfig.colorProfile + 1);
+                        TotemChangerParticlesConfig.setProfile(FabricLoader.getInstance().getConfigDir(), TotemChangerParticlesConfig.profile + 1);
                         updateMessage();
-                        TotemChangerParticlesScreen.updateColorSliders();
+                        TotemChangerParticlesScreen.updateSettings();
                         this.playDownSound(Minecraft.getInstance().getSoundManager());
                     }
                     case GLFW.GLFW_MOUSE_BUTTON_2 -> {
-                        if (TotemChangerParticlesConfig.colorProfile > 1) {
-                            TotemChangerParticlesConfig.setColorProfile(FabricLoader.getInstance().getConfigDir(), TotemChangerParticlesConfig.colorProfile - 1);
+                        if (TotemChangerParticlesConfig.profile > 1) {
+                            TotemChangerParticlesConfig.setProfile(FabricLoader.getInstance().getConfigDir(), TotemChangerParticlesConfig.profile - 1);
                             updateMessage();
-                            TotemChangerParticlesScreen.updateColorSliders();
+                            TotemChangerParticlesScreen.updateSettings();
                             this.playDownSound(Minecraft.getInstance().getSoundManager());
                         }
                     }
@@ -164,7 +169,7 @@ public class TotemChangerParticlesScreen extends Screen {
         }
 
         protected void updateMessage() {
-            setMessage(Component.literal(Component.translatable("totemchanger.particles.option.colorProfile").getString()+": "+TotemChangerParticlesConfig.colorProfile));
+            setMessage(Component.literal(Component.translatable("totemchanger.particles.option.profile").getString()+": "+TotemChangerParticlesConfig.profile));
         }
 
         @Override
