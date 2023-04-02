@@ -121,7 +121,7 @@ public class TotemChangerParticlesConfig {
             // Loading new profile's settings
             loadProfile(directory);
         } catch (Exception e) {
-            LOG.warn("Unable to save TotemParticlesChanger config.", e);
+            LOG.warn("Unable to change profile.", e);
         }
     }
 
