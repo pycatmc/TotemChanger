@@ -26,27 +26,7 @@ public class TotemChangerParticlesConfig {
     public static int green = 0;
     public static int blue = 0;
 
-
-
-    public static void setProfile(Path directory, int newProfile) {
-        try {
-            saveConfig(directory);
-
-            Path pathConfigFolder = directory.resolve("totemchanger");
-            Path pathConfig = pathConfigFolder.resolve("totemchanger-particles.json");
-            Files.createDirectories(pathConfigFolder);
-            JsonObject jsonConfig = new JsonObject();
-            jsonConfig.addProperty("enabled", enabled);
-            jsonConfig.addProperty("profile", profile = newProfile);
-            Files.write(pathConfig, GSON.toJson(jsonConfig).getBytes(StandardCharsets.UTF_8));
-
-            loadConfig(directory);
-        } catch (Exception e) {
-            LOG.warn("Unable to save TotemParticlesChanger config.", e);
-        }
-    }
-
-    public static void loadConfig(Path directory) {
+    private static void loadConfig(Path directory) {
         try {
             Path pathConfigFolder = directory.resolve("totemchanger");
             Path pathConfig = pathConfigFolder.resolve("totemchanger-particles.json");
@@ -55,7 +35,16 @@ public class TotemChangerParticlesConfig {
             enabled = jsonConfig.get("enabled").getAsBoolean();
             profile = jsonConfig.get("profile").getAsInt();
 
-            Path pathProfile = pathConfigFolder.resolve("profile"+ profile +".json");
+            LOG.info("TotemChanger particles config loaded.");
+        } catch (Exception e) {
+            LOG.warn("Unable to load TotemChanger particles config.", e);
+        }
+    }
+
+    private static void loadProfile(Path directory) {
+        try {
+            Path pathConfigFolder = directory.resolve("totemchanger");
+            Path pathProfile = pathConfigFolder.resolve("profile"+profile+".json");
             if (!Files.isRegularFile(pathProfile)) return;
             JsonObject jsonProfile = GSON.fromJson(new String(Files.readAllBytes(pathProfile), StandardCharsets.UTF_8), JsonObject.class);
             scale = jsonProfile.get("scale").getAsFloat();
@@ -67,13 +56,18 @@ public class TotemChangerParticlesConfig {
             green = jsonProfile.get("green").getAsInt();
             blue = jsonProfile.get("blue").getAsInt();
 
-            LOG.info("TotemParticlesChanger config loaded.");
+            LOG.info("TotemChanger particles profile "+profile+" loaded.");
         } catch (Exception e) {
-            LOG.warn("Unable to load TotemParticlesChanger config.", e);
+            LOG.warn("Unable to load TotemChanger particles profile "+profile+".", e);
         }
     }
 
-    public static void saveConfig(Path directory) {
+    public static void loadConfigs(Path directory) {
+        loadConfig(directory);
+        loadProfile(directory);
+    }
+
+    private static void saveConfig(Path directory) {
         try {
             Path pathConfigFolder = directory.resolve("totemchanger");
             Path pathConfig = pathConfigFolder.resolve("totemchanger-particles.json");
@@ -83,7 +77,16 @@ public class TotemChangerParticlesConfig {
             jsonConfig.addProperty("profile", profile);
             Files.write(pathConfig, GSON.toJson(jsonConfig).getBytes(StandardCharsets.UTF_8));
 
-            Path pathProfile = pathConfigFolder.resolve("profile"+ profile +".json");
+            LOG.info("TotemChanger particles config saved.");
+        } catch (Exception e) {
+            LOG.warn("Unable to save TotemChanger particles config.", e);
+        }
+    }
+
+    private static void saveProfile(Path directory) {
+        try {
+            Path pathConfigFolder = directory.resolve("totemchanger");
+            Path pathProfile = pathConfigFolder.resolve("profile"+profile+".json");
             JsonObject jsonProfile = new JsonObject();
             jsonProfile.addProperty("scale", scale);
             jsonProfile.addProperty("velocityMultiplier", velocityMultiplier);
@@ -95,7 +98,28 @@ public class TotemChangerParticlesConfig {
             jsonProfile.addProperty("blue", blue);
             Files.write(pathProfile, GSON.toJson(jsonProfile).getBytes(StandardCharsets.UTF_8));
 
-            LOG.info("TotemParticlesChanger config saved.");
+            LOG.info("TotemChanger particles profile "+profile+" saved.");
+        } catch (Exception e) {
+            LOG.warn("Unable to save TotemChanger particles profile "+profile+".", e);
+        }
+    }
+
+    public static void saveConfigs(Path directory) {
+        saveConfig(directory);
+        saveProfile(directory);
+    }
+
+    public static void setProfile(Path directory, int newProfile) {
+        try {
+            // Saving previous profile configs
+            saveConfigs(directory);
+
+            // Changing profile to new and saving main config
+            profile = newProfile;
+            saveConfig(directory);
+
+            // Loading new profile's settings
+            loadProfile(directory);
         } catch (Exception e) {
             LOG.warn("Unable to save TotemParticlesChanger config.", e);
         }

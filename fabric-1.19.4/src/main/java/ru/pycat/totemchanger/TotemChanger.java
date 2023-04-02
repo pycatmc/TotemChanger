@@ -10,6 +10,6 @@ public class TotemChanger implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         TotemChangerAnimationConfig.loadConfig(FabricLoader.getInstance().getConfigDir());
-        TotemChangerParticlesConfig.loadConfig(FabricLoader.getInstance().getConfigDir());
+        TotemChangerParticlesConfig.loadConfigs(FabricLoader.getInstance().getConfigDir());
     }
 }

@@ -131,7 +131,7 @@ public class TotemChangerParticlesScreen extends Screen {
         TotemChangerParticlesConfig.enabled = enabled.selected();
         TotemChangerParticlesConfig.randomColor = randomColor.selected();
 
-        TotemChangerParticlesConfig.saveConfig(FabricLoader.getInstance().getConfigDir());
+        TotemChangerParticlesConfig.saveConfigs(FabricLoader.getInstance().getConfigDir());
     }
 
     public static class ProfileButton extends AbstractButton {
