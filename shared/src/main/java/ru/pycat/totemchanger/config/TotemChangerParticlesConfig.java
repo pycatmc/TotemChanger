@@ -111,8 +111,8 @@ public class TotemChangerParticlesConfig {
 
     public static void setProfile(Path directory, int newProfile) {
         try {
-            // Saving previous profile configs
-            saveConfigs(directory);
+            // Saving previous profile settings
+            saveProfile(directory);
 
             // Changing profile to new and saving main config
             profile = newProfile;
