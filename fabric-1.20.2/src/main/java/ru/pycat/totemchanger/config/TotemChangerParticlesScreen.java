@@ -150,10 +150,12 @@ public class TotemChangerParticlesScreen extends Screen {
             if (this.clicked(mouseX, mouseY)) {
                 switch (keyCode) {
                     case GLFW.GLFW_MOUSE_BUTTON_1 -> {
-                        TotemChangerParticlesConfig.setProfile(FabricLoader.getInstance().getConfigDir(), TotemChangerParticlesConfig.profile + 1);
-                        updateMessage();
-                        TotemChangerParticlesScreen.updateSettings();
-                        this.playDownSound(Minecraft.getInstance().getSoundManager());
+                        if (TotemChangerParticlesConfig.profile < 20) {
+                            TotemChangerParticlesConfig.setProfile(FabricLoader.getInstance().getConfigDir(), TotemChangerParticlesConfig.profile + 1);
+                            updateMessage();
+                            TotemChangerParticlesScreen.updateSettings();
+                            this.playDownSound(Minecraft.getInstance().getSoundManager());
+                        }
                     }
                     case GLFW.GLFW_MOUSE_BUTTON_2 -> {
                         if (TotemChangerParticlesConfig.profile > 1) {
@@ -170,7 +172,7 @@ public class TotemChangerParticlesScreen extends Screen {
         }
 
         protected void updateMessage() {
-            setMessage(Component.literal(Component.translatable("totemchanger.particles.option.profile").getString()+": "+TotemChangerParticlesConfig.profile));
+            setMessage(Component.literal(String.format("%s: %d", Component.translatable("totemchanger.particles.option.profile").getString(), TotemChangerParticlesConfig.profile)));
         }
 
         @Override

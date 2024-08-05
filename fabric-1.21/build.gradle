@@ -1,0 +1,40 @@
+plugins {
+    id 'fabric-loom' version '1.7-SNAPSHOT'
+}
+
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
+
+group = 'ru.pycat.totemchanger'
+archivesBaseName = 'TotemChanger-Fabric-1.21'
+version = project.mod_version
+evaluationDependsOn(':shared')
+
+repositories {
+    maven { url 'https://maven.terraformersmc.com/releases/' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.fabric_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.101.1+1.21"
+    modApi "com.terraformersmc:modmenu:11.0.1"
+    compileOnly project(":shared")
+}
+
+processResources {
+    from project(":shared").sourceSets.main.resources
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+compileJava {
+    source project(':shared').sourceSets.main.allSource
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
